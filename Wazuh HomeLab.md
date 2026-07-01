@@ -19,7 +19,6 @@ El laboratorio se encuentra desplegado de forma local mediante virtualización, 
 ### 1. Orquestación del Segmento de Red Privado
 Para garantizar que el tráfico de estrés y explotación no interfiera con la red LAN común, se creó un servidor DHCP dedicado mediante la CLI de VirtualBox (`VBoxManage`) en la maquina Host:
 
-`bash`
 `VBoxManage dhcpserver add --network=CyberStudyLab --server-ip=192.168.3.1 --netmask=255.255.255.0 --Lower-ip=192.168.3.2 --upper-ip=192.168.3.254 --Enable`
 
 ![ListaDHCP.png](img/ListaDHCP.png)
