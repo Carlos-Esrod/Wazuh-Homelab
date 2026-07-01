@@ -22,7 +22,7 @@ Para garantizar que el tráfico de estrés y explotación no interfiera con la r
 `bash`
 `VBoxManage dhcpserver add --network=CyberStudyLab --server-ip=192.168.3.1 --netmask=255.255.255.0 --Lower-ip=192.168.3.2 --upper-ip=192.168.3.254 --Enable`
 
-![Lista DHCP.png](img/Lista DHCP.png)
+![ListaDHCP.png](img/ListaDHCP.png)
 
 ### 2. Vinculación de Interfaces en el Hipervisor
 
@@ -30,7 +30,7 @@ Cada una de las tres máquinas virtuales es asociada manualmente a la interfaz d
 
 La maquina victima Ubuntu será la unica con conexión a internet para el Setup del Agente Wazuh
 
-![Ajustes de red VirtualBox.png](img/Ajustes de red VirtualBox.png)
+![AjustesderedVirtualBox.png](img/AjustesderedVirtualBox.png)
 
 Cable Conectado: Permite al hardware virtual simular la conexión física, habilitando que los demonios de red de cada S.O. soliciten direccionamiento al DHCP de VirtualBox.
 
@@ -38,19 +38,19 @@ Cable Conectado: Permite al hardware virtual simular la conexión física, habil
 ### 3. Despliegue del Servidor SIEM (Wazuh Manager)
 Se procede con la importación del OVA oficial de Wazuh. Este nodo centralizará la recolección de eventos y las alertas del laboratorio.
 
-![Wazuh OVA.png](img/Wazuh OVA.png)
+![WazuhOVA.png](img/WazuhOVA.png)
 
-![IP Wazuh-Server.png](img/IP Wazuh-Server.png)
+![IPWazuhServer.png](img/IPWazuhServer.png)
 
 ### 4. Configuración del Entorno de Evaluación (Atacante)
 Se despliega una máquina virtual con Kali Linux.
 
-![KaliLinux Desktop.png](img/KaliLinux Desktop.png)
+![KaliLinuxDesktop.png](img/KaliLinuxDesktop.png)
 
 ### 5. Configuración del Objetivo de Auditoría (Víctima)
 Se inicializa un entorno con Ubuntu 26.04 LTS Desktop.
 
-![Ubuntu Desktop.png](img/Ubuntu Desktop.png)
+![UbuntuDesktop.png](img/UbuntuDesktop.png)
 
 ## Despliegue de Agentes e Inventario de Servicios
 
@@ -60,17 +60,17 @@ Desde el panel web de Wazuh, generamos el script de despliegue automatizado para
 
 `wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.14.5-1_amd64.deb && sudo WAZUH_MANAGER='192.168.3.2' WAZUH_AGENT_NAME='UbuntuAgent' dpkg -i ./wazuh-agent_4.14.5-1_amd64.deb`
 
-![Setup Agente.png](img/Setup Agente.png)
+![SetupAgente.png](img/SetupAgente.png)
 
 `sudo systemctl daemon-reload`
 `sudo systemctl enable wazuh-agent`
 `sudo systemctl start wazuh-agent`
 
-![Enable Wazuh-Agent.png](img/Enable Wazuh-Agent.png)
+![EnableWazuhAgent.png](img/EnableWazuhAgent.png)
 
 Validamos en endpoints-summary el estado del agente.
 
-![Endpoint Agent.png](img/Endpoint Agent.png)
+![EndpointAgent.png](img/EndpointAgent.png)
 
 ## Simulación de Amenazas (Servidor Web)
 
